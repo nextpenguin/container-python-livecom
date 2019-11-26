@@ -25,6 +25,7 @@ RUN apt-get install -y sudo \
     && echo $USERNAME ALL=\(root\) NOPASSWD:ALL > /etc/sudoers.d/$USERNAME\
     && chmod 0440 /etc/sudoers.d/$USERNAME 
 
+# Implement fonts for Japanese
 RUN curl -L  "https://ipafont.ipa.go.jp/IPAexfont/ipaexg00201.zip" > font.zip
 RUN unzip font.zip
 RUN cp ipaexg00201/ipaexg.ttf /opt/conda/lib/python3.7/site-packages/matplotlib/mpl-data/fonts/ttf/ipaexg.ttf
