@@ -1,0 +1,47 @@
+version: "3"
+
+services:
+  db:
+    build: ./docker/mysql
+    restart: always
+    environment:
+      MYSQL_ALLOW_EMPTY_PASSWORD: "yes"
+      MYSQL_DATABASE: analytic
+      MYSQL_USER: root
+      MYSQL_PASSWORD: passw0rd
+      MYSQL_ROOT_PASSWORD: passw0rd
+    ports:
+      - 52026:3306
+    volumes:
+      - mysql:/var/lib/mysql
+      - ./docker/mysql/initdb.d:/docker-entrypoint-initdb.d
+      - ./docker/mysql/conf.d:/etc/mysql/conf.d
+      - ./log/mysql:/var/log/mysql
+
+  python:
+    build: 
+      context: ./docker/python
+      dockerfile: Dockerfile
+    command: sleep infinity
+    volumes:
+      - ./share:/workspace
+      - ~/.gitconfig:/root/.gitconfig
+    links: # depends_onと同じ機能
+      - db
+
+  jupyter:
+    #image: jupyter/scipy-notebook
+    build: 
+      context: ./docker/jupyter
+      dockerfile: Dockerfile
+    command: sleep infinity
+    volumes:
+      - ./share:/home/jovyan/work/share
+      - ~/.gitconfig:/root/.gitconfig
+    ports:
+      - 52000:8888
+    links: # depends_onと同じ機能
+      - db
+
+volumes:
+  mysql:

@@ -1,0 +1,13 @@
+version: '3'
+services:
+  # develop environment
+  devenv:
+    build: 
+      context: .devcontainer
+      dockerfile: Dockerfile
+    volumes:
+      - .:/root/workspace
+      - ~/.gitconfig:/root/.gitconfig
+    ports:
+      - 52080:9080
+    command: sleep infinity

@@ -1,0 +1,34 @@
+// See https://aka.ms/vscode-remote/containers for the
+// documentation about the devcontainer.json format
+{
+	"name": "PythonLivecom",
+	"dockerComposeFile": [
+        "../docker-compose.yml",
+        "docker-compose.extend.yml"
+	],
+	// docker-compose.yml またはdocker-compose.extend.yml に記述されている service 名を指定
+	"service": "python",
+	// Use 'settings' to set *default* container specific settings.json values on container create. 
+	// You can edit these settings after create using File > Preferences > Settings > Remote.
+	"settings": { 
+		"terminal.integrated.shell.linux": "/bin/bash",
+		"python.pythonPath": "/usr/local/bin/python",
+		"python.linting.enabled": true,
+		"python.linting.pylintEnabled": true,
+		"python.linting.pylintPath": "/usr/local/bin/pylint"
+	},
+	// Uncomment the next line if you want start specific services in your Docker Compose config.
+	// "runServices": [],
+
+	// Uncomment the next line if you want to keep your containers running after VS Code shuts down.
+	"shutdownAction": "stopCompose",
+
+	// Uncomment the next line to run commands after the container is created.
+	// "postCreateCommand": "pip install -r requirements.txt",
+
+	// Add the IDs of extensions you want installed when the container is created in the array below.
+	"extensions": [
+		"ms-python.python"
+	],
+	"workspaceFolder": "/workspace"
+}

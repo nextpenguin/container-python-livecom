@@ -1,0 +1,14 @@
+lxml
+bs4
+requests
+sqlalchemy
+pillow
+mysqlclient
+selenium
+boto3
+chromedriver-binary
+watchdog
+pandas
+matplotlib
+mecab-python3
+networkx

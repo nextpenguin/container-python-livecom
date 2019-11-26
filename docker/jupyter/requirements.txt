@@ -1,0 +1,5 @@
+pandas
+matplotlib
+mecab-python3
+networkx
+pygraphviz
